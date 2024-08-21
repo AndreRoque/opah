@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CorrelationId" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="8.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libs\Lib.HttpBase\Opah.Lib.HttpBase\Opah.Lib.HttpBase.csproj" />
+    <ProjectReference Include="..\Opah.Lancamento.Application\Opah.Lancamento.Application.csproj" />
+    <ProjectReference Include="..\Opah.Lancamento.Infra.MongoDB\Opah.Lancamento.Infra.MongoDB.csproj" />
+  </ItemGroup>
+
+</Project>
