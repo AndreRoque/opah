@@ -1,2 +1,39 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build-env
-WORKDIR /app
+name: .NET Core CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '2.1.x'
+
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+    - name: Test with dotnet
+      run: dotnet test --no-restore --verbosity normal
+
+    - name: Build Docker image
+      run: docker build -t myapp .
+
+    - name: Run Docker container
+      run: docker run -d -p 80:80 myapp
+
+    - name: Check running containers
+      run: docker ps
+
+    # Adicione etapas adicionais conforme necessário
